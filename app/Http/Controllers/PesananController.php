@@ -10,27 +10,92 @@ class PesananController extends Controller
     private function allPesanan(): Collection
     {
         return collect([
-            ['no' => 'PSN-001', 'tanggal' => '2023-10-12', 'tanggal_display' => '12 Okt 2023', 'status' => 'SELESAI',  'pelanggan' => 'Budi Darmawan',   'instansi' => 'PT. Maju Mundur',      'no_wa' => '081234567890', 'total' => 'Rp 12.500.000'],
-            ['no' => 'PSN-002', 'tanggal' => '2023-10-12', 'tanggal_display' => '12 Okt 2023', 'status' => 'DIPROSES', 'pelanggan' => 'Siti Aminah',     'instansi' => 'Dinas Pendidikan',     'no_wa' => '089876543210', 'total' => 'Rp 4.200.000'],
-            ['no' => 'PSN-003', 'tanggal' => '2023-10-11', 'tanggal_display' => '11 Okt 2023', 'status' => 'MENUNGGU', 'pelanggan' => 'Andi Wijaya',     'instansi' => 'CV. Berkah Abadi',     'no_wa' => '085244332211', 'total' => 'Rp 8.950.000'],
-            ['no' => 'PSN-004', 'tanggal' => '2023-10-10', 'tanggal_display' => '10 Okt 2023', 'status' => 'SELESAI',  'pelanggan' => 'Rina Kartika',    'instansi' => 'Universitas Terbuka',  'no_wa' => '081122334455', 'total' => 'Rp 2.100.000'],
-            ['no' => 'PSN-005', 'tanggal' => '2023-10-10', 'tanggal_display' => '10 Okt 2023', 'status' => 'SELESAI',  'pelanggan' => 'Doni Saputra',    'instansi' => 'Freelance',            'no_wa' => '087766554433', 'total' => 'Rp 500.000'],
-            ['no' => 'PSN-006', 'tanggal' => '2023-10-09', 'tanggal_display' => '09 Okt 2023', 'status' => 'DIPROSES', 'pelanggan' => 'Mega Lestari',    'instansi' => 'PT. Sejahtera Baru',   'no_wa' => '082233445566', 'total' => 'Rp 6.750.000'],
-            ['no' => 'PSN-007', 'tanggal' => '2023-10-09', 'tanggal_display' => '09 Okt 2023', 'status' => 'SELESAI',  'pelanggan' => 'Hendra Susilo',   'instansi' => 'Kemendag RI',          'no_wa' => '081398765432', 'total' => 'Rp 18.000.000'],
-            ['no' => 'PSN-008', 'tanggal' => '2023-10-08', 'tanggal_display' => '08 Okt 2023', 'status' => 'MENUNGGU', 'pelanggan' => 'Dewi Rahayu',     'instansi' => 'PT. Karya Mandiri',    'no_wa' => '085312345678', 'total' => 'Rp 3.400.000'],
-            ['no' => 'PSN-009', 'tanggal' => '2023-10-08', 'tanggal_display' => '08 Okt 2023', 'status' => 'SELESAI',  'pelanggan' => 'Fajar Nugroho',   'instansi' => 'BUMN Persero',         'no_wa' => '089654321098', 'total' => 'Rp 9.800.000'],
-            ['no' => 'PSN-010', 'tanggal' => '2023-10-07', 'tanggal_display' => '07 Okt 2023', 'status' => 'DIPROSES', 'pelanggan' => 'Indah Permata',   'instansi' => 'Yayasan Bakti',        'no_wa' => '081567890123', 'total' => 'Rp 1.250.000'],
-            ['no' => 'PSN-011', 'tanggal' => '2023-10-07', 'tanggal_display' => '07 Okt 2023', 'status' => 'SELESAI',  'pelanggan' => 'Wahyu Santoso',   'instansi' => 'PT. Global Tech',      'no_wa' => '087890123456', 'total' => 'Rp 22.500.000'],
-            ['no' => 'PSN-012', 'tanggal' => '2023-10-06', 'tanggal_display' => '06 Okt 2023', 'status' => 'MENUNGGU', 'pelanggan' => 'Nila Sari',       'instansi' => 'Koperasi Maju',        'no_wa' => '082345678901', 'total' => 'Rp 780.000'],
-            ['no' => 'PSN-013', 'tanggal' => '2023-10-06', 'tanggal_display' => '06 Okt 2023', 'status' => 'SELESAI',  'pelanggan' => 'Agus Pratama',    'instansi' => 'PT. Abadi Jaya',       'no_wa' => '085678901234', 'total' => 'Rp 5.600.000'],
-            ['no' => 'PSN-014', 'tanggal' => '2023-10-05', 'tanggal_display' => '05 Okt 2023', 'status' => 'DIPROSES', 'pelanggan' => 'Ratna Dewi',      'instansi' => 'Dinas Kesehatan',      'no_wa' => '081234098765', 'total' => 'Rp 14.200.000'],
-            ['no' => 'PSN-015', 'tanggal' => '2023-10-05', 'tanggal_display' => '05 Okt 2023', 'status' => 'SELESAI',  'pelanggan' => 'Rudi Hartono',    'instansi' => 'CV. Mitra Usaha',      'no_wa' => '089012345678', 'total' => 'Rp 3.100.000'],
-            ['no' => 'PSN-016', 'tanggal' => '2023-10-04', 'tanggal_display' => '04 Okt 2023', 'status' => 'MENUNGGU', 'pelanggan' => 'Sari Bulan',      'instansi' => 'PT. Cahaya Nusantara', 'no_wa' => '082109876543', 'total' => 'Rp 7.450.000'],
-            ['no' => 'PSN-017', 'tanggal' => '2023-10-04', 'tanggal_display' => '04 Okt 2023', 'status' => 'SELESAI',  'pelanggan' => 'Bambang Wibowo',  'instansi' => 'PT. Surya Abadi',      'no_wa' => '085209876543', 'total' => 'Rp 11.300.000'],
-            ['no' => 'PSN-018', 'tanggal' => '2023-10-03', 'tanggal_display' => '03 Okt 2023', 'status' => 'DIPROSES', 'pelanggan' => 'Citra Anggraeni', 'instansi' => 'Universitas Negeri',   'no_wa' => '081309876543', 'total' => 'Rp 2.850.000'],
-            ['no' => 'PSN-019', 'tanggal' => '2023-10-02', 'tanggal_display' => '02 Okt 2023', 'status' => 'SELESAI',  'pelanggan' => 'Dian Kusuma',     'instansi' => 'Bank Rakyat',          'no_wa' => '087609876543', 'total' => 'Rp 33.000.000'],
-            ['no' => 'PSN-020', 'tanggal' => '2023-10-01', 'tanggal_display' => '01 Okt 2023', 'status' => 'SELESAI',  'pelanggan' => 'Eko Purnomo',     'instansi' => 'CV. Harapan Bangsa',   'no_wa' => '082609876543', 'total' => 'Rp 1.900.000'],
+            ['id' => 1,    'no' => 'PSN-001', 'tanggal' => '2023-10-12', 'tanggal_display' => '12 Okt 2023', 'status' => 'SELESAI',  'pelanggan' => 'Budi Darmawan',   'instansi' => 'PT. Maju Mundur',      'no_wa' => '081234567890', 'total' => 'Rp 12.500.000'],
+            ['id' => null, 'no' => 'PSN-002', 'tanggal' => '2023-10-12', 'tanggal_display' => '12 Okt 2023', 'status' => 'DIPROSES', 'pelanggan' => 'Siti Aminah',     'instansi' => 'Dinas Pendidikan',     'no_wa' => '089876543210', 'total' => 'Rp 4.200.000'],
+            ['id' => null, 'no' => 'PSN-003', 'tanggal' => '2023-10-11', 'tanggal_display' => '11 Okt 2023', 'status' => 'MENUNGGU', 'pelanggan' => 'Andi Wijaya',     'instansi' => 'CV. Berkah Abadi',     'no_wa' => '085244332211', 'total' => 'Rp 8.950.000'],
+            ['id' => null, 'no' => 'PSN-004', 'tanggal' => '2023-10-10', 'tanggal_display' => '10 Okt 2023', 'status' => 'SELESAI',  'pelanggan' => 'Rina Kartika',    'instansi' => 'Universitas Terbuka',  'no_wa' => '081122334455', 'total' => 'Rp 2.100.000'],
+            ['id' => null, 'no' => 'PSN-005', 'tanggal' => '2023-10-10', 'tanggal_display' => '10 Okt 2023', 'status' => 'SELESAI',  'pelanggan' => 'Doni Saputra',    'instansi' => 'Freelance',            'no_wa' => '087766554433', 'total' => 'Rp 500.000'],
+            ['id' => null, 'no' => 'PSN-006', 'tanggal' => '2023-10-09', 'tanggal_display' => '09 Okt 2023', 'status' => 'DIPROSES', 'pelanggan' => 'Mega Lestari',    'instansi' => 'PT. Sejahtera Baru',   'no_wa' => '082233445566', 'total' => 'Rp 6.750.000'],
+            ['id' => null, 'no' => 'PSN-007', 'tanggal' => '2023-10-09', 'tanggal_display' => '09 Okt 2023', 'status' => 'SELESAI',  'pelanggan' => 'Hendra Susilo',   'instansi' => 'Kemendag RI',          'no_wa' => '081398765432', 'total' => 'Rp 18.000.000'],
+            ['id' => null, 'no' => 'PSN-008', 'tanggal' => '2023-10-08', 'tanggal_display' => '08 Okt 2023', 'status' => 'MENUNGGU', 'pelanggan' => 'Dewi Rahayu',     'instansi' => 'PT. Karya Mandiri',    'no_wa' => '085312345678', 'total' => 'Rp 3.400.000'],
+            ['id' => null, 'no' => 'PSN-009', 'tanggal' => '2023-10-08', 'tanggal_display' => '08 Okt 2023', 'status' => 'SELESAI',  'pelanggan' => 'Fajar Nugroho',   'instansi' => 'BUMN Persero',         'no_wa' => '089654321098', 'total' => 'Rp 9.800.000'],
+            ['id' => null, 'no' => 'PSN-010', 'tanggal' => '2023-10-07', 'tanggal_display' => '07 Okt 2023', 'status' => 'DIPROSES', 'pelanggan' => 'Indah Permata',   'instansi' => 'Yayasan Bakti',        'no_wa' => '081567890123', 'total' => 'Rp 1.250.000'],
+            ['id' => null, 'no' => 'PSN-011', 'tanggal' => '2023-10-07', 'tanggal_display' => '07 Okt 2023', 'status' => 'SELESAI',  'pelanggan' => 'Wahyu Santoso',   'instansi' => 'PT. Global Tech',      'no_wa' => '087890123456', 'total' => 'Rp 22.500.000'],
+            ['id' => null, 'no' => 'PSN-012', 'tanggal' => '2023-10-06', 'tanggal_display' => '06 Okt 2023', 'status' => 'MENUNGGU', 'pelanggan' => 'Nila Sari',       'instansi' => 'Koperasi Maju',        'no_wa' => '082345678901', 'total' => 'Rp 780.000'],
+            ['id' => null, 'no' => 'PSN-013', 'tanggal' => '2023-10-06', 'tanggal_display' => '06 Okt 2023', 'status' => 'SELESAI',  'pelanggan' => 'Agus Pratama',    'instansi' => 'PT. Abadi Jaya',       'no_wa' => '085678901234', 'total' => 'Rp 5.600.000'],
+            ['id' => null, 'no' => 'PSN-014', 'tanggal' => '2023-10-05', 'tanggal_display' => '05 Okt 2023', 'status' => 'DIPROSES', 'pelanggan' => 'Ratna Dewi',      'instansi' => 'Dinas Kesehatan',      'no_wa' => '081234098765', 'total' => 'Rp 14.200.000'],
+            ['id' => null, 'no' => 'PSN-015', 'tanggal' => '2023-10-05', 'tanggal_display' => '05 Okt 2023', 'status' => 'SELESAI',  'pelanggan' => 'Rudi Hartono',    'instansi' => 'CV. Mitra Usaha',      'no_wa' => '089012345678', 'total' => 'Rp 3.100.000'],
+            ['id' => null, 'no' => 'PSN-016', 'tanggal' => '2023-10-04', 'tanggal_display' => '04 Okt 2023', 'status' => 'MENUNGGU', 'pelanggan' => 'Sari Bulan',      'instansi' => 'PT. Cahaya Nusantara', 'no_wa' => '082109876543', 'total' => 'Rp 7.450.000'],
+            ['id' => null, 'no' => 'PSN-017', 'tanggal' => '2023-10-04', 'tanggal_display' => '04 Okt 2023', 'status' => 'SELESAI',  'pelanggan' => 'Bambang Wibowo',  'instansi' => 'PT. Surya Abadi',      'no_wa' => '085209876543', 'total' => 'Rp 11.300.000'],
+            ['id' => null, 'no' => 'PSN-018', 'tanggal' => '2023-10-03', 'tanggal_display' => '03 Okt 2023', 'status' => 'DIPROSES', 'pelanggan' => 'Citra Anggraeni', 'instansi' => 'Universitas Negeri',   'no_wa' => '081309876543', 'total' => 'Rp 2.850.000'],
+            ['id' => null, 'no' => 'PSN-019', 'tanggal' => '2023-10-02', 'tanggal_display' => '02 Okt 2023', 'status' => 'SELESAI',  'pelanggan' => 'Dian Kusuma',     'instansi' => 'Bank Rakyat',          'no_wa' => '087609876543', 'total' => 'Rp 33.000.000'],
+            ['id' => null, 'no' => 'PSN-020', 'tanggal' => '2023-10-01', 'tanggal_display' => '01 Okt 2023', 'status' => 'SELESAI',  'pelanggan' => 'Eko Purnomo',     'instansi' => 'CV. Harapan Bangsa',   'no_wa' => '082609876543', 'total' => 'Rp 1.900.000'],
         ]);
+    }
+
+    public function show($id)
+    {
+        $pesanan = [
+            'no'           => 'PSN-001',
+            'status'       => 'SELESAI',
+            'nama'         => 'Budi Darmawan',
+            'dipesan_pada' => '12 Oktober 2023 • 09:15 WIB',
+            'diperbarui'   => '12 Okt 2023 11:30 oleh Admin',
+            'items'        => [
+                [
+                    'nama'   => 'Kaos Polo TOPLA Classic',
+                    'sku'    => 'SKU: TOP-KP-001',
+                    'varian' => 'Hitam',
+                    'harga'  => 'Rp 185.000',
+                    'qty'    => 30,
+                    'img'    => null,
+                ],
+                [
+                    'nama'   => 'Jaket Bomber TOPLA',
+                    'sku'    => 'SKU: TOP-JB-002',
+                    'varian' => 'Navy',
+                    'harga'  => 'Rp 420.000',
+                    'qty'    => 20,
+                    'img'    => null,
+                ],
+            ],
+            'logistik' => [
+                'ekspedisi' => 'JNE Reguler',
+                'resi'      => 'JN9876543210',
+                'berat'     => '12.5 kg',
+            ],
+            'pembayaran' => [
+                'metode'     => 'Transfer BCA',
+                'atas_nama'  => 'BUDI DARMAWAN',
+                'verifikasi' => 'SUDAH DIVERIFIKASI',
+            ],
+            'ringkasan' => [
+                'subtotal' => 'Rp 13.950.000',
+                'ongkir'   => 'Rp 85.000',
+                'diskon'   => '- Rp 1.535.000',
+                'total'    => 'Rp 12.500.000',
+                'lunas'    => true,
+            ],
+            'pelanggan' => [
+                'instansi' => 'PT. Maju Mundur',
+                'wa'       => '+62 812-3456-7890',
+                'alamat'   => 'Jl. Gatot Subroto No. 45, Lt. 3, Jakarta Selatan, 12710',
+            ],
+            'catatan' => 'Mohon pisahkan pengiriman per warna. Kaos hitam dulu, baru jaket navy. Terima kasih!',
+        ];
+
+        return view('pesanan.show', compact('pesanan'));
+    }
+
+    public function create()
+    {
+        return view('pesanan.create');
+    }
+
+    public function store(Request $request)
+    {
+        // TODO: simpan ke database
+        return redirect()->route('pesanan.index');
     }
 
     public function index(Request $request)

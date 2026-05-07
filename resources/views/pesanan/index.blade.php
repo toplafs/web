@@ -26,12 +26,13 @@
         <h1 class="text-2xl font-bold text-gray-800">Daftar Pesanan</h1>
         <p class="text-gray-400 text-sm mt-1">Kelola seluruh transaksi pelanggan Anda di sini.</p>
     </div>
-    <button class="flex items-center gap-2 bg-[#1B7080] hover:bg-[#155f6d] text-white text-sm font-semibold px-5 py-2.5 rounded-xl transition-colors shadow-sm">
+    <a href="{{ route('pesanan.create') }}"
+       class="flex items-center gap-2 bg-[#1B7080] hover:bg-[#155f6d] text-white text-sm font-semibold px-5 py-2.5 rounded-xl transition-colors shadow-sm">
         <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
             <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
         </svg>
         Tambah Pesanan
-    </button>
+    </a>
 </div>
 
 {{-- Stat cards — update sesuai filter tanggal & search --}}
@@ -143,7 +144,13 @@
                     <td class="px-6 py-4 text-gray-400 font-medium">{{ str_pad($from + $index, 2, '0', STR_PAD_LEFT) }}</td>
                     <td class="px-6 py-4 text-gray-600 whitespace-nowrap">{{ $item['tanggal_display'] }}</td>
                     <td class="px-6 py-4"><x-status-badge :status="$item['status']" /></td>
-                    <td class="px-6 py-4 font-semibold text-gray-800">{{ $item['pelanggan'] }}</td>
+                    <td class="px-6 py-4 font-semibold text-gray-800">
+                        @if ($item['id'])
+                            <a href="{{ route('pesanan.show', $item['id']) }}" class="hover:text-[#1B7080] hover:underline transition-colors">{{ $item['pelanggan'] }}</a>
+                        @else
+                            {{ $item['pelanggan'] }}
+                        @endif
+                    </td>
                     <td class="px-6 py-4 text-gray-500">{{ $item['instansi'] }}</td>
                     <td class="px-6 py-4 text-gray-500">{{ $item['no_wa'] }}</td>
                     <td class="px-6 py-4 text-right font-semibold text-gray-800 whitespace-nowrap">{{ $item['total'] }}</td>

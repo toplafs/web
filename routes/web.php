@@ -16,5 +16,9 @@ Route::get('/pesanan/create',   [PesananController::class,  'create'])->name('pe
 Route::post('/pesanan',         [PesananController::class,  'store'])->name('pesanan.store');
 Route::get('/pesanan/{id}',     [PesananController::class,  'show'])->name('pesanan.show');
 
-Route::get('/pelanggan', [PelangganController::class, 'index'])->name('pelanggan.index');
+Route::get('/pelanggan',              [PelangganController::class, 'index'])->name('pelanggan.index');
+Route::get('/pelanggan/create',       [PelangganController::class, 'create'])->name('pelanggan.create');
+Route::post('/pelanggan',             [PelangganController::class, 'store'])->name('pelanggan.store');
+Route::get('/pelanggan/{id}/edit',    [PelangganController::class, 'edit'])->name('pelanggan.edit');
+Route::put('/pelanggan/{id}',         [PelangganController::class, 'update'])->name('pelanggan.update');
 Route::get('/produk', [ProdukController::class, 'index'])->name('produk.index');

@@ -50,10 +50,35 @@ class PelangganController extends Controller
         ];
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $pelanggan = $this->mockPelanggan();
-        return view('pelanggan.index', compact('pelanggan'));
+        $search  = $request->input('search', '');
+        $perPage = 5;
+        $page    = max(1, (int) $request->input('page', 1));
+
+        $all = collect($this->mockPelanggan());
+
+        if ($search) {
+            $s   = strtolower($search);
+            $all = $all->filter(fn($p) =>
+                str_contains(strtolower($p['nama']),     $s) ||
+                str_contains(strtolower($p['instansi']), $s) ||
+                str_contains(strtolower($p['alamat']),   $s)
+            );
+        }
+
+        $total       = $all->count();
+        $lastPage    = max(1, (int) ceil($total / $perPage));
+        $currentPage = min($page, $lastPage);
+
+        $pelanggan = $all->values()->slice(($currentPage - 1) * $perPage, $perPage)->values();
+
+        $from = $total > 0 ? ($currentPage - 1) * $perPage + 1 : 0;
+        $to   = min($currentPage * $perPage, $total);
+
+        return view('pelanggan.index', compact(
+            'pelanggan', 'total', 'from', 'to', 'currentPage', 'lastPage', 'search'
+        ));
     }
 
     public function create()

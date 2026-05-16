@@ -60,19 +60,11 @@
         <div class="grid grid-cols-2 gap-5">
             <div>
                 <label class="block text-[10px] font-semibold text-gray-400 tracking-widest uppercase mb-2">Provinsi</label>
-                <div class="relative">
-                    <select name="provinsi"
-                            class="appearance-none w-full bg-gray-50 border border-gray-200 text-gray-700 text-sm rounded-xl pl-4 pr-9 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#1B7080]/30 cursor-pointer">
-                        @foreach ($provinsi_list as $prov)
-                            <option value="{{ $prov }}" {{ $prov === $pelanggan['provinsi'] ? 'selected' : '' }}>{{ $prov }}</option>
-                        @endforeach
-                    </select>
-                    <div class="pointer-events-none absolute inset-y-0 right-3 flex items-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-                        </svg>
-                    </div>
-                </div>
+                <select name="provinsi" id="select-provinsi" style="width:100%">
+                    @foreach ($provinsi_list as $prov)
+                        <option value="{{ $prov['id'] }}" {{ $prov['id'] == $pelanggan['provinsi_id'] ? 'selected' : '' }}>{{ $prov['name'] }}</option>
+                    @endforeach
+                </select>
             </div>
             <div>
                 <label class="block text-[10px] font-semibold text-gray-400 tracking-widest uppercase mb-2">Kabupaten/Kota</label>
@@ -109,5 +101,93 @@
     </div>
 
 </form>
+
+@push('styles')
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<style>
+    .select2-container--default .select2-selection--single {
+        background-color: rgb(249 250 251);
+        border: 1px solid rgb(229 231 235);
+        border-radius: 0.75rem;
+        height: auto;
+        padding: 0.5rem 2.5rem 0.5rem 1rem;
+        transition: box-shadow 0.15s;
+    }
+    .select2-container--default .select2-selection--single .select2-selection__rendered {
+        color: rgb(55 65 81);
+        font-size: 0.875rem;
+        line-height: 1.5rem;
+        padding: 0;
+    }
+    .select2-container--default .select2-selection--single .select2-selection__placeholder {
+        color: rgb(209 213 219);
+    }
+    .select2-container--default .select2-selection--single .select2-selection__arrow {
+        height: 100%;
+        top: 0;
+        right: 0.75rem;
+    }
+    .select2-container--default.select2-container--open .select2-selection--single,
+    .select2-container--default.select2-container--focus .select2-selection--single {
+        border-color: rgb(27 112 128 / 0.5);
+        box-shadow: 0 0 0 3px rgb(27 112 128 / 0.15);
+        outline: none;
+    }
+    .select2-dropdown {
+        background: white;
+        border: 1px solid rgb(243 244 246);
+        border-radius: 0.75rem;
+        box-shadow: 0 10px 25px -5px rgb(0 0 0 / 0.1), 0 4px 10px -6px rgb(0 0 0 / 0.08);
+        overflow: hidden;
+        margin-top: 4px;
+    }
+    .select2-search--dropdown {
+        padding: 0.5rem;
+        border-bottom: 1px solid rgb(243 244 246);
+    }
+    .select2-container--default .select2-search--dropdown .select2-search__field {
+        background-color: rgb(249 250 251);
+        border: 1px solid rgb(229 231 235);
+        border-radius: 0.5rem;
+        font-size: 0.875rem;
+        padding: 0.5rem 0.75rem;
+        color: rgb(55 65 81);
+    }
+    .select2-container--default .select2-search--dropdown .select2-search__field:focus {
+        outline: none;
+        border-color: rgb(27 112 128 / 0.5);
+        box-shadow: 0 0 0 2px rgb(27 112 128 / 0.15);
+    }
+    .select2-results__option {
+        font-size: 0.875rem;
+        color: rgb(55 65 81);
+        padding: 0.5rem 1rem;
+    }
+    .select2-container--default .select2-results__option--highlighted[aria-selected] {
+        background-color: rgb(243 244 246);
+        color: rgb(55 65 81);
+    }
+    .select2-container--default .select2-results__option[aria-selected=true] {
+        background-color: rgb(27 112 128 / 0.08);
+        color: rgb(27 112 128);
+        font-weight: 500;
+    }
+    .select2-results__options { max-height: 220px; }
+</style>
+@endpush
+
+@push('scripts')
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script>
+    $(function () {
+        $('#select-provinsi').select2({
+            allowClear: false,
+            width: '100%',
+            language: { searching: () => 'Mencari...' },
+        });
+    });
+</script>
+@endpush
 
 @endsection

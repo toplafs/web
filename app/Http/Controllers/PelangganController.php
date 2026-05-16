@@ -3,39 +3,28 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
+use App\Models\ProvinsiModel;
+use App\Models\KabupatenModel;
 
 class PelangganController extends Controller
 {
     private function provinsiList(): array
     {
-        return [
-            'Aceh', 'Bali', 'Banten', 'Bengkulu', 'DI Yogyakarta', 'DKI Jakarta',
-            'Gorontalo', 'Jambi', 'Jawa Barat', 'Jawa Tengah', 'Jawa Timur',
-            'Kalimantan Barat', 'Kalimantan Selatan', 'Kalimantan Tengah', 'Kalimantan Timur', 'Kalimantan Utara',
-            'Kepulauan Bangka Belitung', 'Kepulauan Riau', 'Lampung', 'Maluku', 'Maluku Utara',
-            'Nusa Tenggara Barat', 'Nusa Tenggara Timur', 'Papua', 'Papua Barat',
-            'Riau', 'Sulawesi Barat', 'Sulawesi Selatan', 'Sulawesi Tengah', 'Sulawesi Tenggara', 'Sulawesi Utara',
-            'Sumatera Barat', 'Sumatera Selatan', 'Sumatera Utara',
-        ];
+        return Cache::remember('provinsi_list', now()->addDay(), function () {
+            return ProvinsiModel::orderBy('name')->get(['id', 'name'])->toArray();
+        });
     }
 
     private function kabupatenMap(): array
     {
-        return [
-            'DKI Jakarta'    => ['Kota Jakarta Pusat', 'Kota Jakarta Utara', 'Kota Jakarta Barat', 'Kota Jakarta Selatan', 'Kota Jakarta Timur', 'Kab. Kepulauan Seribu'],
-            'Jawa Barat'     => ['Kota Bandung', 'Kota Bekasi', 'Kota Bogor', 'Kota Cimahi', 'Kota Depok', 'Kota Cirebon', 'Kab. Bandung', 'Kab. Bekasi', 'Kab. Bogor', 'Kab. Cianjur', 'Kab. Garut', 'Kab. Indramayu', 'Kab. Karawang', 'Kab. Subang', 'Kab. Sukabumi', 'Kab. Tasikmalaya'],
-            'Jawa Tengah'    => ['Kota Semarang', 'Kota Solo', 'Kota Magelang', 'Kota Pekalongan', 'Kota Salatiga', 'Kota Tegal', 'Kab. Banyumas', 'Kab. Cilacap', 'Kab. Demak', 'Kab. Klaten', 'Kab. Purwokerto', 'Kab. Semarang', 'Kab. Sukoharjo', 'Kab. Wonogiri'],
-            'Jawa Timur'     => ['Kota Surabaya', 'Kota Malang', 'Kota Kediri', 'Kota Blitar', 'Kota Madiun', 'Kota Mojokerto', 'Kota Pasuruan', 'Kota Probolinggo', 'Kab. Gresik', 'Kab. Jember', 'Kab. Jombang', 'Kab. Lumajang', 'Kab. Malang', 'Kab. Sidoarjo', 'Kab. Tuban'],
-            'DI Yogyakarta'  => ['Kota Yogyakarta', 'Kab. Bantul', 'Kab. Gunungkidul', 'Kab. Kulon Progo', 'Kab. Sleman'],
-            'Banten'         => ['Kota Cilegon', 'Kota Serang', 'Kota Tangerang', 'Kota Tangerang Selatan', 'Kab. Lebak', 'Kab. Pandeglang', 'Kab. Serang', 'Kab. Tangerang'],
-            'Bali'           => ['Kota Denpasar', 'Kab. Badung', 'Kab. Bangli', 'Kab. Buleleng', 'Kab. Gianyar', 'Kab. Jembrana', 'Kab. Karangasem', 'Kab. Klungkung', 'Kab. Tabanan'],
-            'Sumatera Utara' => ['Kota Medan', 'Kota Binjai', 'Kota Pematangsiantar', 'Kota Sibolga', 'Kota Tanjungbalai', 'Kab. Deli Serdang', 'Kab. Karo', 'Kab. Langkat', 'Kab. Simalungun'],
-            'Sumatera Barat' => ['Kota Padang', 'Kota Bukittinggi', 'Kota Payakumbuh', 'Kab. Agam', 'Kab. Lima Puluh Kota', 'Kab. Padang Pariaman', 'Kab. Pesisir Selatan', 'Kab. Solok'],
-            'Riau'           => ['Kota Pekanbaru', 'Kota Dumai', 'Kab. Bengkalis', 'Kab. Indragiri Hilir', 'Kab. Kampar', 'Kab. Rokan Hilir', 'Kab. Siak'],
-            'Lampung'        => ['Kota Bandar Lampung', 'Kota Metro', 'Kab. Lampung Selatan', 'Kab. Lampung Tengah', 'Kab. Lampung Utara', 'Kab. Pesawaran', 'Kab. Pringsewu', 'Kab. Tanggamus'],
-            'Sulawesi Selatan' => ['Kota Makassar', 'Kota Parepare', 'Kota Palopo', 'Kab. Bone', 'Kab. Bulukumba', 'Kab. Gowa', 'Kab. Maros', 'Kab. Wajo'],
-            'Kalimantan Timur' => ['Kota Samarinda', 'Kota Balikpapan', 'Kota Bontang', 'Kab. Berau', 'Kab. Kutai Kartanegara', 'Kab. Kutai Timur', 'Kab. Penajam Paser Utara'],
-        ];
+        return Cache::remember('kabupaten_list', now()->addDay(), function () {
+            return KabupatenModel::orderBy('name')
+                ->get(['id', 'prov_id', 'name'])
+                ->groupBy('prov_id')
+                ->map(fn($items) => $items->map(fn($k) => ['id' => $k->id, 'name' => $k->name])->values()->all())
+                ->all();
+        });
     }
 
     private function mockPelanggan(): array
